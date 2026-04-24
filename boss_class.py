@@ -9,7 +9,7 @@ def get_number_only():
         except ValueError:
             print("Invalid input. Please enter a valid number.")
 def get_option(op):
-    print("menu:\n")
+    print("Menu:\n")
     for i in range(len(op)):
         print(i, "- ", op[i], "press (", i, ")\n")
     while True:
@@ -19,8 +19,6 @@ def get_option(op):
         else:
             print("Invalid input. Please enter a valid option.")
     return option
-def get_grade():
-    return ra.randint(0, 100)
 def get_result(average_for_f):
     if average_for_f < 50:
         result = "Fail"
@@ -31,20 +29,20 @@ def get_result(average_for_f):
     else:
         result = "Excellent"
     return result
-def get_canvas(a101, b101, c101, name101, Average_grades101, result101):
+def get_weakest_subject(math, english, programming):
+    if math == 100 and english == 100 and programming == 100:
+        return "None"
+    else:
+        weakest_subject = min([math, english, programming])
+        if weakest_subject == math:
+            weakest_subject = "Math"
 
-    mep1 = ({"math": a101}, {"english": b101}, {"programming": c101})
-    mep = str(mep1).ljust(60)
+        elif weakest_subject == english:
+            weakest_subject = "English"
 
-    edit = ((name101.ljust(45)).lower()).title() + mep
-    student = [(str(edit)).ljust(85) + "Score Rate (%.1f %%) , Result : %s"%(Average_grades101, result101)]
-    return student
-def get_canvas_file(students):
-    return "\n".join(str(s) for s in students)
-def get_canvas_file_02(Average_grades_for_class):
-    mean_class = st.mean(Average_grades_for_class)
-    xx = "The class success rate is: %.1f %% , The Result is : %s"%(mean_class, get_result(mean_class))
-    xy = xx.center(144)
-    return xy
+        else:  
+            weakest_subject = "Programming"
+
+        return weakest_subject
 def no_data_message():
     print("There is not enough data! Add a student first.")
